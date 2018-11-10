@@ -1,0 +1,19 @@
+{
+  "name": "node-todo-app",
+  "version": "1.0.0",
+  "description": "### Getting Started",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heminjohnson/Node-Todo-App.git"
+  },
+  "author": "Hemin Johnson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/heminjohnson/Node-Todo-App/issues"
+  },
+  "homepage": "https://github.com/heminjohnson/Node-Todo-App#readme"
+}
