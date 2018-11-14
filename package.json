@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/heminjohnson/Node-Todo-App/issues"
   },
-  "homepage": "https://github.com/heminjohnson/Node-Todo-App#readme"
+  "homepage": "https://github.com/heminjohnson/Node-Todo-App#readme",
+  "dependencies": {
+    "mongoose": "^5.3.12"
+  }
 }
