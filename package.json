@@ -21,7 +21,8 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
-    "mongoose": "^5.3.12"
+    "mongoose": "^5.3.12",
+    "ramda": "^0.26.1"
   },
   "devDependencies": {
     "expect": "^23.6.0",
