@@ -1,6 +1,7 @@
 var express = require('express')
 var bodyParser = require('body-parser')
 var {ObjectID} = require('mongodb')
+var _ = require('ramda')
 
 var {mongoose} = require('./db/mongoose')
 var {Todo} = require('./models/todo')
@@ -63,6 +64,32 @@ app.delete('/todos/:id', (req, res) => {
     res.send({todo})
   }).catch((e) => {
     res.status(400).send()
+  })
+})
+
+app.patch('/todos/:id', (req, res) => {
+  var id = req.params.id
+  var body = _.pick(['text', 'completed'], req.body)
+
+  if(!ObjectID.isValid(id)) {
+    return res.status(404).send()
+  }
+
+  if(body.completed === true) {
+    body.completedAt = new Date().getTime()
+  } else {
+    body.completedAt = null
+    body.completed = false
+  }
+
+  Todo.findByIdAndUpdate({_id: id}, body, {new: true}).then((todo) => {
+    if(!todo) {
+      return res.status(404).send()
+    }
+
+    res.send({todo})
+  }).catch((e) => {
+    res.status(400).send(e)
   })
 })
 
