@@ -217,7 +217,7 @@ describe('POST /users', () => {
       User.findOne({email}).then((user) => {
         expect(user).toExist
         done()
-      })
+      }).catch((e) => done(e))
     })
   })
 
