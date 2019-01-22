@@ -130,6 +130,27 @@ describe('DELETE /todos/:id', () => {
       })
   })
 
+  it('should not remove the todo from other user ids', (done) => {
+    var hexId = todos[1]._id.toHexString()
+    console.log(hexId)
+
+    request(app)
+      .delete(`/todos/${hexId}`)
+      .set('x-auth', users[0].tokens[0].token)
+      .expect(404)
+      .end((err, res) => {
+        if(err) {
+          return done(err)
+        }
+        Todo.findById(hexId).then((todo) => {
+          expect(todo).not.toBeFalsy()
+          done()
+        }).catch((e) => {
+          done(e)
+        })
+      })
+  })
+
   it('should return 404 if todo not found', (done) => {
     var hexId = new ObjectID().toHexString()
     request(app)
