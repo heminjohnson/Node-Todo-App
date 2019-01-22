@@ -112,6 +112,7 @@ describe('DELETE /todos/:id', () => {
 
     request(app)
       .delete(`/todos/${hexId}`)
+      .set('x-auth', users[1].tokens[0].token)
       .expect(200)
       .expect((res) => {
         expect(res.body.todo._id).toBe(hexId)
@@ -133,6 +134,7 @@ describe('DELETE /todos/:id', () => {
     var hexId = new ObjectID().toHexString()
     request(app)
       .delete(`/todos/${hexId}`)
+      .set('x-auth', users[1].tokens[0].token)
       .expect(404)
       .end(done)
   })
@@ -140,6 +142,7 @@ describe('DELETE /todos/:id', () => {
   it('should return 404 for non object ids', (done) => {
     request(app)
       .delete(`/todos/123`)
+      .set('x-auth', users[1].tokens[0].token)
       .expect(404)
        .end(done)
   })
