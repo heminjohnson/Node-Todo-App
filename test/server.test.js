@@ -79,6 +79,14 @@ describe('GET /todos/:id', () => {
       .end(done)
   })
 
+  it('should not return the todos of other user ids', (done) => {
+    request(app)
+      .get(`/todos/${todos[1]._id.toHexString()}`)
+      .set('x-auth', users[0].tokens[0].token)
+      .expect(404)
+      .end(done)
+  })
+
   it('should return 404 if todo not found', (done) => {
     var hexId = new ObjectID().toHexString()
     request(app)
